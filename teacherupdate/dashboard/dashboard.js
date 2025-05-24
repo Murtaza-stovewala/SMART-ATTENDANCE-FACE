@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 👥 Fetch and display live attendance list
-  fetch(`https://smart-attendance-system-2p2j.onrender.com/api/attendance/live/${teacherId}`)
+  fetch(`https://smart-attendance-face.onrender.com/api/attendance/live/${teacherId}`)
     .then(res => {
       if (!res.ok) throw new Error("Failed to fetch attendance");
       return res.json();
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const row = e.target.closest("tr");
         const studentId = row.children[0].textContent;
 
-        fetch("https://smart-attendance-system-2p2j.onrender.com/api/attendance/mark-absent", {
+        fetch("https://smart-attendance-face.onrender.com/api/attendance/mark-absent", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ teacherId, studentId })
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 📝 Fetch override requests (optional)
-  fetch(`https://smart-attendance-system-2p2j.onrender.com/api/overrides/${teacherId}`)
+  fetch(`https://smart-attendance-face.onrender.com/api/overrides/${teacherId}`)
     .then(res => res.json())
     .then(data => {
       const tbody = document.querySelector("#overrideTable tbody");

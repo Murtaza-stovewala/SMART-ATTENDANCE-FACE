@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const res = await fetch("https://smart-attendance-system-2p2j.onrender.com/api/students/login", {
+      const res = await fetch("https://smart-attendance-face.onrender.com/api/students/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ collegeId, password })

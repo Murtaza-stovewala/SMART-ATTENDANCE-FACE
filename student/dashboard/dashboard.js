@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ✅ Fetch student profile
-  fetch(`https://smart-attendance-system-2p2j.onrender.com/api/students/profile/${studentId}`)
+  fetch(`https://smart-attendance-face.onrender.com/api/students/profile/${studentId}`)
     .then(async (res) => {
       const text = await res.text();
       try {

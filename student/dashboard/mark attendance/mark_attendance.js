@@ -54,7 +54,7 @@ async function captureFace(code) {
   faceDescriptor = Array.from(detection.descriptor);
   console.log("📡 Sending face descriptor to backend", faceDescriptor);
 
-  const response = await fetch("https://smart-attendance-system-2p2j.onrender.com/api/attendance/mark", {
+  const response = await fetch("https://smart-attendance-face.onrender.com/api/attendance/mark", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ collegeId: studentCollegeId, code, faceDescriptor })
@@ -87,7 +87,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    const res = await fetch(`https://smart-attendance-system-2p2j.onrender.com/api/students/profile/${studentId}`);
+    const res = await fetch(`https://smart-attendance-face.onrender.com/api/students/profile/${studentId}`);
     const data = await res.json();
     if (res.ok && data.success) {
       studentName = data.student.name;
@@ -115,7 +115,7 @@ form.addEventListener("submit", async function (e) {
   console.log("🔍 Validating code:", inputCode);
 
   try {
-    const res = await fetch("https://smart-attendance-system-2p2j.onrender.com/api/code/active");
+    const res = await fetch("https://smart-attendance-face.onrender.com/api/code/active");
     const data = await res.json();
     console.log("🧾 Active code response:", data);
 

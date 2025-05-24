@@ -11,7 +11,7 @@ document.getElementById("teacherForm").addEventListener("submit", async (e) => {
   }
 
   try {
-    const res = await fetch("https://smart-attendance-system-2p2j.onrender.com/api/admin/add-teacher", {
+    const res = await fetch("https://smart-attendance-face.onrender.com/api/admin/add-teacher", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, teacherId, password })
