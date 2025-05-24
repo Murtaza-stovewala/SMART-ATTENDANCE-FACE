@@ -1,0 +1,131 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #c084fc, #f472b6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(75deg, #e8d0a3, #6f7fa5);
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.login-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  text-align: center;
+}
+
+.login-container h1 {
+  margin-bottom: 1.5rem;
+  color: #293b61;
+  font-size: 2rem;
+}
+
+.login-container h1 span {
+  color: #eeb94e;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.login-container input[type="text"]:focus {
+  border-color: #bfa064;
+  outline: none;
+}
+.login-container input[type="password"]:focus {
+  border-color: #bfa064;
+  outline: none;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  background-color: #293b61;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.login-container button:hover {
+  background-color: #bfa064;
+}
+
+#errorMessage {
+  margin-top: 1rem;
+  color: red;
+  font-weight: 500;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+    height: auto;
+    align-items: flex-start;
+  }
+
+  .login-container {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .login-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .login-container input[type="text"],
+  .login-container input[type="password"],
+  .login-container button {
+    font-size: 1rem;
+  }
+
+  .remember-me {
+    flex-direction: row;
+    align-items: center;
+    font-size: 0.95rem;
+  }
+
+  #errorMessage {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+}

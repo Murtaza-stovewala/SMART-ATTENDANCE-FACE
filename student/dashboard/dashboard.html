@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+  <meta charset="UTF-8">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <nav>
+    <h1>Smart Attendance</h1> 
+    <ul>
+      <li><a href="profile/profile.html">Profile</a></li>
+      <li><a href="attendence/attendace.html">My Attendance</a></li>
+      <li><a href="#raiseComplaint">Raise Complaint</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </nav> 
+
+  <main>
+    <section class="welcome">
+      <div class="welcome">
+        <h1>Welcome, <span id="student-name"></span></h1>
+      </div>
+      <p>Email: <span id="student-email"></span></p>
+      <p>College ID: <span id="student-collegeId"></span></p>
+      <p>Course: <span id="student-course">B-Tech CSE</span></p>
+    </section>
+
+    <section class="attendance-action">
+      <h2>Today's <span>Attendance</span></h2>
+      <a class="mark-attendance-btn" href="mark attendance/mark_attendance.html">📍 Mark Today's Attendance</a>
+    </section>
+
+    <section class="alerts">
+      <h2>Alerts & Messages</h2>
+      <p class="alert" id="attendance-alert">Checking attendance...</p>
+    </section>
+
+    <section class="charts">
+      <div class="card">
+        <h2>Overall <span>Attendance</span></h2>
+        <canvas id="overallChart"></canvas>
+      </div>
+
+      <div class="card">
+        <h2>Lecture-Wise <span>Attendance</span></h2>
+        <canvas id="lectureChart"></canvas>
+      </div>
+    </section>
+
+    <section id="raiseComplaint" class="feedback">
+      <h2>Raise a <span>Complaint</span></h2>
+      <div id="feedBack">
+        <textarea placeholder="Describe your attendance issue here..."></textarea>
+        <button onclick="submitComplaint()">Submit</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

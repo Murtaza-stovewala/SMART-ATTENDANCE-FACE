@@ -1,0 +1,82 @@
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f3f4f6;
+}
+nav {
+  /* background: linear-gradient(to right, #c084fc, #f472b6); */
+  background: #293b61;
+  padding: 1rem 2rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+ 
+nav h1 {
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+nav ul li a:hover {
+  color: #ffc107;
+  font-weight: 650;
+  text-decoration: underline; 
+}
+main {
+  padding: 2rem;
+}
+.dashboard-card {
+  background: white;
+  padding: 2rem;
+  max-width: 600px;
+  margin: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+h1 {
+  color: #293b61;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  text-align: center;
+
+}
+h1 span {
+  color: #bfa064;
+}
+button {
+  padding: 0.8rem 1.5rem;
+  background-color:#bfa064;;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  width: 75%;
+}
+#locationInfo {
+  margin-top: 1rem;
+  color: #444;
+}
+
+.code-box {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #111827;
+}
+.code-box small {
+  color: #6b7280;
+}

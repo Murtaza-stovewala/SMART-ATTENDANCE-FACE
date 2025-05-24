@@ -1,0 +1,152 @@
+/* style.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* background: linear-gradient(to right, #c084fc, #f472b6); */
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(75deg, #e8d0a3, #6f7fa5);
+  animation: gradientShift 15s ease infinite;
+}
+
+/* #background {
+  background: linear-gradient(135deg, #e0b4f1, #7dbde8, #d6a4e8);
+  background-size: 300% 300%;
+  animation: gradientShift 15s ease infinite;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+} */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+} 
+
+.container {
+  text-align: center;
+}
+
+header {
+  margin-bottom: 20px;
+  color: white;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  color: #293b61;
+}
+
+header h1 span {
+  color: #eeb94e;
+
+}
+
+header p {
+  font-size: 1.2rem;
+  color: #293b61;
+  margin-top: 0.5rem;
+}
+
+.card {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  margin: auto;
+
+}
+
+.card h2 {
+  margin-bottom: 1.5rem;
+  color: #293b61;
+  font-size: 2rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+input:focus {
+  border-color: #bfa064;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #293b61;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #bfa064;
+}
+
+a {
+  color: #293b61;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #bfa064;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+    height: auto;
+    align-items: flex-start;
+  }
+
+  .container {
+    width: 100%;
+    padding-top: 2rem;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  header p {
+    font-size: 1rem;
+  }
+
+  .card h2 {
+    font-size: 1.5rem;
+  }
+
+  input,
+  button {
+    font-size: 1rem;
+  }
+}

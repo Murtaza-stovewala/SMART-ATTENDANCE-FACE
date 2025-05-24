@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mark My Attendance</title>
+  <link rel="stylesheet" href="mark_attendance.css">
+</head>
+
+<body>
+  <main>
+    <div class="container">
+      <h2>Mark <span>Today's Attendance</span></h2>
+      <form id="attendanceForm">
+        <label for="code">Enter Teacher's Code:</label>
+        <input type="text" id="code" required placeholder="e.g., LEC12345" />
+        <button type="submit" id="verifyBtn">Verify & Continue</button>
+        <p id="location-status"></p>
+      </form>
+
+      <div id="locationStatus" class="status"></div>
+
+      <div id="cameraSection" style="display:none;">
+        <h3>Face Verification</h3>
+        <video id="video" autoplay playsinline></video>
+        <button id="captureBtn">📷 Capture Face</button>
+        <canvas id="canvas" style="display:none;"></canvas>
+      </div>
+
+      <div id="resultMessage" class="status"></div>
+    </div>
+  </main>
+  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+  <script defer src="mark_attendance.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f3f4f6;
+  color: #333;
+}
+nav {
+  /* background: linear-gradient(to right, #c084fc, #f472b6); */
+  background: #293b61;
+  padding: 1rem 2rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav h1 {
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+nav ul li a:hover {
+  color: #ffc107;
+  font-weight: 650;
+  text-decoration: underline; 
+}
+main {
+  padding: 2rem;
+}
+.profile-card {
+  background: white;
+  padding: 2rem;
+  max-width: 500px;
+  margin: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+}
+.profile-card h2 {
+  color: #293b61;
+  font-size: 2rem;
+  text-align: center;
+}
+.profile-card h2 span {
+  color: #bfa064;
+}
+.info p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #293b61;
+  font-weight: 600;
+}
+.info strong {
+  color: black;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.update-password,
+.device-request {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+button {
+  padding: 0.6rem 1.2rem;
+  background-color: #293b61;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #bfa064;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    gap: 0.5rem;
+  }
+
+  nav ul li a {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  .profile-card {
+    width: 100%;
+    padding: 1.5rem;
+    box-sizing: border-box;
+  }
+
+  .profile-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .info p {
+    font-size: 0.95rem;
+  }
+
+  .info strong {
+    font-size: 1rem;
+  }
+
+  .update-password h3,
+  .device-request h3 {
+    font-size: 1.1rem;
+  }
+
+  input[type="password"] {
+    font-size: 1rem;
+  }
+
+  button {
+    width: 100%;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+}

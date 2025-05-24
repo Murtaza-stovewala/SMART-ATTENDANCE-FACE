@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Profile</title>
+  <link rel="stylesheet" href="profile.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <h1>Smart Attendance System</h1>
+    <ul>
+      <li><a href="/student/dashboard/dashboard.html">Dashboard</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="profile-card">
+      <h2>My <span>Profile</span></h2>
+      <div class="info">
+        <p><strong>Name:</strong> John Doe</p>
+        <p><strong>College ID:</strong> 123456</p>
+        <p><strong>Email:</strong> johndoe@example.com</p>
+        <p><strong>Device ID:</strong> DeviceXYZ-123 (Bound)</p>
+      </div>
+
+      <div class="update-password">
+        <h3>Update Password</h3>
+        <input type="password" id="newPassword" placeholder="New Password" />
+        <button onclick="updatePassword()">Update</button>
+      </div>
+
+      <div class="device-request">
+        <h3>Device Reverification</h3>
+        <button onclick="requestReverification()">Request Reverification</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="profile.js"></script>
+</body>
+</html>

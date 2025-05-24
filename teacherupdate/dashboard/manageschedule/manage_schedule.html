@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manage Schedule - Smart Attendance</title>
+  <link rel="stylesheet" href="manage_schedule.css" />
+</head>
+<body>
+  <nav>
+    <h1>Smart Attendance</h1>
+    <ul>
+      <li><a href="/teacher/dashboard/dashboard.html">Dashboard</a></li>
+      <!-- <li><a href="manage_schedule.html">Manage Schedule</a></li> -->
+      <li><a href="teacher_logout.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h2>Lecture <span>Schedule</span></h2>
+    <form id="scheduleForm">
+      <input type="text" id="courseName" placeholder="Course Name" required />
+      <input type="datetime-local" id="startTime" required />
+      <input type="datetime-local" id="endTime" required />
+      <button type="submit">Add Lecture</button>
+    </form>
+    
+    <table id="scheduleTable">
+      <thead><tr><th>Course</th><th>Start</th><th>End</th><th>Action</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+  <script src="manage_schedule.js"></script>
+</body>
+</html>

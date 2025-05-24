@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teacher Dashboard - Smart Attendance</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <nav>
+    <h1>Smart Attendance</h1>
+    <ul>
+      <!-- <li><a href="teacher_dashboard.html">Admin</a></li> -->
+      <li><a href="/teacher/dashboard/manageschedule/manage_schedule.html">Manage Schedule</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- Welcome Section -->
+    <section class="welcome">
+      <div class="welcome">
+        <h1>Welcome, <span id="teacher-name"></span></h1>
+      </div>
+    </section>
+
+    <!-- Generate Session Section -->
+    <section class="attendance-action">
+      <h2>Start <span>Lecture Session</span></h2>
+      <a class="mark-attendance-btn" href="generateCode/generateCode.html">📍 Generate Session Code</a>
+    </section>
+
+    <!-- Live Attendance Section -->
+    <section class="live-attendance">
+      <h2>Live Attendance</h2>
+      <button onclick="exportToExcel()">📤 Export Attendance to Excel</button>
+      <table id="liveTable">
+        <thead>
+          <tr>
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dynamic rows -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Manual Overrides Section -->
+    <section class="manual-override">
+      <h2>Manual Overrides</h2>
+      <table id="overrideTable">
+        <thead>
+          <tr>
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>Reason</th>
+            <th>Timestamp</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dynamic override rows -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

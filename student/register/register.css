@@ -1,0 +1,171 @@
+body {
+  font-family: Arial, sans-serif;
+  /* background: linear-gradient(to right, #c084fc, #f472b6); */
+  background: #f5f7fa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1rem;
+    background: linear-gradient(75deg, #e8d0a3, #6f7fa5);
+    animation: gradientShift 15s ease infinite;
+}
+ @keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+ 
+.container {
+  text-align: center;
+}
+
+header {
+  padding-top: 4rem;
+  margin-bottom: 20px;
+  color: white;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  color: #293b61;
+}
+
+header h1 span {
+  color: #eeb94e;
+}
+header p{
+    font-size: 1.2rem;
+    color: #293b61;
+    margin-top: 0.5rem;
+  }
+
+.card {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  margin: auto;
+}
+
+.card h2 {
+  margin-bottom: 1.5rem;
+  color: #293b61;
+  font-size: 2rem;
+}
+
+input,
+button {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: #bfa064;
+  outline: none;
+}
+
+button {
+  background-color: #293b61;
+  color: white;
+  border: none;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background-color: #bfa064;
+}
+
+video,
+canvas {
+  width: 100%;
+  margin-top: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.card p {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.card a {
+  color: #293b61;
+  text-decoration: none;
+}
+
+.card a:hover {
+  text-decoration: underline;
+  color: #bfa064;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  margin-top: 1rem;
+}
+
+#video,
+#canvas {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+    height: auto;
+    align-items: flex-start;
+  }
+
+  .container {
+    width: 100%;
+    padding-top: 2rem;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  header p {
+    font-size: 1rem;
+  }
+
+  .card h2 {
+    font-size: 1.5rem;
+  }
+
+  input,
+  button {
+    font-size: 1rem;
+  }
+
+  .video-wrapper {
+    aspect-ratio: auto;
+    height: auto;
+  }
+
+  #video,
+  #canvas {
+    width: 100%;
+    height: auto;
+  }
+}
