@@ -65,6 +65,21 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.button-group button:hover {
+  background-color: #293b61;
+  color: white;
+  font-weight: 600;
+}
+.button-group button {
+  width: 75%;
+}
+
 video, canvas {
   width: 100%;
   border-radius: 8px;

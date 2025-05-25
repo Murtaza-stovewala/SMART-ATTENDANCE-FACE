@@ -11,10 +11,17 @@
   <main>
     <div class="container">
       <h2>Mark <span>Today's Attendance</span></h2>
+
       <form id="attendanceForm">
         <label for="code">Enter Teacher's Code:</label>
         <input type="text" id="code" required placeholder="e.g., LEC12345" />
-        <button type="submit" id="verifyBtn">Verify & Continue</button>
+
+        <div class="button-group">
+          <button type="submit" id="verifyBtn">Verify & Continue</button>
+          <!-- ✅ Button initially hidden, shown after success -->
+          <button type="button" id="goToDashboardBtn" style="display: none;">Go to Dashboard</button>
+        </div>
+
         <p id="location-status"></p>
       </form>
 
@@ -30,6 +37,7 @@
       <div id="resultMessage" class="status"></div>
     </div>
   </main>
+
   <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
   <script defer src="mark_attendance.js"></script>
 </body>

@@ -37,42 +37,93 @@ function startCamera() {
     });
 }
 
+// async function captureFace(code) {
+//   console.log("📸 Capturing face...");
+//   const detection = await faceapi
+//     .detectSingleFace(video, new faceapi.TinyFaceDetectorOptions())
+//     .withFaceLandmarks()
+//     .withFaceDescriptor();
+
+//   if (!detection) {
+//     console.log("❌ Face not detected");
+//     resultMessage.textContent = "❌ Face not detected.";
+//     resultMessage.style.color = "red";
+//     return;
+//   }
+
+//   faceDescriptor = Array.from(detection.descriptor);
+//   console.log("📡 Sending face descriptor to backend", faceDescriptor);
+
+//   const response = await fetch("https://smart-attendance-face.onrender.com/api/attendance/mark", {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({ collegeId: studentCollegeId, code, faceDescriptor })
+//   });
+
+//   const data = await response.json();
+//   console.log("📥 Response from server:", data);
+
+//   if (response.ok) {
+//     resultMessage.textContent = `✅ Attendance marked successfully for ${studentName}`;
+//     resultMessage.style.color = "green";
+//     alert(`✅ Attendance marked for ${studentName}`);
+//   } else {
+//     resultMessage.textContent = data.message;
+//     resultMessage.style.color = "red";
+//   }
+
+//   video.srcObject.getTracks().forEach(track => track.stop());
+// }
 async function captureFace(code) {
-  console.log("📸 Capturing face...");
-  const detection = await faceapi
-    .detectSingleFace(video, new faceapi.TinyFaceDetectorOptions())
-    .withFaceLandmarks()
-    .withFaceDescriptor();
+console.log("📸 Capturing face...");
+const detection = await faceapi
+.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions())
+.withFaceLandmarks()
+.withFaceDescriptor();
 
-  if (!detection) {
-    console.log("❌ Face not detected");
-    resultMessage.textContent = "❌ Face not detected.";
-    resultMessage.style.color = "red";
-    return;
-  }
+if (!detection) {
+console.log("❌ Face not detected");
+resultMessage.textContent = "❌ Face not detected.";
+resultMessage.style.color = "red";
+return;
+}
 
-  faceDescriptor = Array.from(detection.descriptor);
-  console.log("📡 Sending face descriptor to backend", faceDescriptor);
+faceDescriptor = Array.from(detection.descriptor);
+console.log("📡 Sending face descriptor to backend", faceDescriptor);
 
-  const response = await fetch("https://smart-attendance-face.onrender.com/api/attendance/mark", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ collegeId: studentCollegeId, code, faceDescriptor })
-  });
+const response = await fetch("https://smart-attendance-face.onrender.com/api/attendance/mark", {
+method: "POST",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify({ collegeId: studentCollegeId, code, faceDescriptor })
+});
 
-  const data = await response.json();
-  console.log("📥 Response from server:", data);
+const data = await response.json();
+console.log("📥 Response from server:", data);
 
-  if (response.ok) {
-    resultMessage.textContent = `✅ Attendance marked successfully for ${studentName}`;
-    resultMessage.style.color = "green";
-    alert(`✅ Attendance marked for ${studentName}`);
-  } else {
-    resultMessage.textContent = data.message;
-    resultMessage.style.color = "red";
-  }
+if (response.ok) {
+resultMessage.textContent = `✅ Attendance marked successfully for ${studentName}`;
+resultMessage.style.color = "green";
+alert(`✅ Attendance marked for ${studentName}`);
 
-  video.srcObject.getTracks().forEach(track => track.stop());
+// ✅ Hide camera section
+document.getElementById("cameraSection").style.display = "none";
+
+// ✅ Show "Go to Dashboard" button
+const dashboardBtn = document.getElementById("goToDashboardBtn");
+dashboardBtn.style.display = "inline-block";
+dashboardBtn.onclick = () => {
+  window.location.href = "../dashboard.html";
+};
+} else {
+const errorMsg = data.message || "❌ Failed to mark attendance.";
+resultMessage.textContent = errorMsg;
+resultMessage.style.color = "red";
+alert(errorMsg);
+}
+
+if (video.srcObject) {
+video.srcObject.getTracks().forEach(track => track.stop());
+}
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
