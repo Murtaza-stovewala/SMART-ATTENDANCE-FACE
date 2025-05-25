@@ -122,6 +122,55 @@ exports.getStudentProfile = async (req, res) => {
 // ✅ Mark Attendance
 
 
+// exports.markAttendance = async (req, res) => {
+//   const { collegeId, code, faceDescriptor } = req.body;
+
+//   if (!collegeId || !code || !faceDescriptor) {
+//     return res.status(400).json({ message: "Missing required fields." });
+//   }
+
+//   try {
+//     const student = await Student.findOne({ collegeId });
+//     if (!student) {
+//       return res.status(404).json({ message: "Student not found." });
+//     }
+
+//     if (!student.faceDescriptor || student.faceDescriptor.length !== 128) {
+//       return res.status(400).json({ message: "No registered face found for this student." });
+//     }
+
+//     const lecture = await LectureCode.findOne({ code });
+//     if (!lecture) {
+//       return res.status(400).json({ message: "Invalid or expired code." });
+//     }
+
+//     const distance = euclideanDistance(student.faceDescriptor, faceDescriptor);
+//     console.log("🧠 Face distance:", distance);
+
+//     const threshold = 0.4; // Stricter match
+//     if (distance > threshold) {
+//       return res.status(401).json({ message: "❌ Face mismatch. Attendance not marked." });
+//     }
+
+//     const attendance = new Attendance({
+//       studentId: student._id,
+//       studentName: student.name,
+//       code,
+//       status: "Present"
+//     });
+
+//     await attendance.save();
+
+//     res.status(200).json({
+//       success: true,
+//       message: `✅ Attendance marked successfully for ${student.name}`
+//     });
+
+//   } catch (error) {
+//     console.error("❌ Error in markAttendance:", error);
+//     res.status(500).json({ message: "Server error." });
+//   }
+// };
 exports.markAttendance = async (req, res) => {
   const { collegeId, code, faceDescriptor } = req.body;
 
@@ -135,10 +184,6 @@ exports.markAttendance = async (req, res) => {
       return res.status(404).json({ message: "Student not found." });
     }
 
-    if (!student.faceDescriptor || student.faceDescriptor.length !== 128) {
-      return res.status(400).json({ message: "No registered face found for this student." });
-    }
-
     const lecture = await LectureCode.findOne({ code });
     if (!lecture) {
       return res.status(400).json({ message: "Invalid or expired code." });
@@ -147,14 +192,13 @@ exports.markAttendance = async (req, res) => {
     const distance = euclideanDistance(student.faceDescriptor, faceDescriptor);
     console.log("🧠 Face distance:", distance);
 
-    const threshold = 0.4; // Stricter match
-    if (distance > threshold) {
-      return res.status(401).json({ message: "❌ Face mismatch. Attendance not marked." });
+    if (distance > 0.6) {
+      return res.status(401).json({ message: "Face mismatch. Attendance not marked." });
     }
 
     const attendance = new Attendance({
       studentId: student._id,
-      studentName: student.name,
+      studentName: student.name, // ✅ ADD THIS
       code,
       status: "Present"
     });
