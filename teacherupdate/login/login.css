@@ -1,28 +1,22 @@
 body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #c084fc, #f472b6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
   margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   background: linear-gradient(75deg, #e8d0a3, #6f7fa5);
   animation: gradientShift 15s ease infinite;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 @keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+} 
 
 .login-container {
   background: white;

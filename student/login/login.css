@@ -2,38 +2,23 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  /* background: linear-gradient(to right, #c084fc, #f472b6); */
   color: #333;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(75deg, #e8d0a3, #6f7fa5);
   animation: gradientShift 15s ease infinite;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
-/* #background {
-  background: linear-gradient(135deg, #e0b4f1, #7dbde8, #d6a4e8);
-  background-size: 300% 300%;
-  animation: gradientShift 15s ease infinite;
-  height: 100%;
-  position: absolute;
-  width: 100%;
-  z-index: -1;
-} */
 @keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 } 
+
 
 .container {
   text-align: center;
