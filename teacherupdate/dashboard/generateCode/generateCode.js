@@ -28,6 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const remaining = 600 - diffInSeconds;
       showCodeBox(generatedCode, remaining);
       startCountdown(remaining);
+      if (goToDashboardBtn) {
+        goToDashboardBtn.style.display = "block";
+        goToDashboardBtn.addEventListener("click", () => {
+          window.location.href = "../dashboard.html";
+        });
+      }
     } else {
       // Expired, clear old data
       clearStoredCode();
