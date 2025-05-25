@@ -1,6 +1,6 @@
-// generateCode.js with backend integration to save teacher code and location
 let countdownTimer;
 let generatedCode = "";
+
 document.addEventListener("DOMContentLoaded", () => {
   const teacherName = localStorage.getItem("teacherName");
   const teacherId = localStorage.getItem("teacherId");
@@ -11,11 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // ✅ Show teacher name
   document.getElementById("teacher-name").textContent = teacherName || "Teacher";
 });
 
-function generateCode() { 
+function generateCode() {
   generatedCode = Math.floor(100000 + Math.random() * 900000);
   const codeBox = document.getElementById("codeDisplay");
 
@@ -36,8 +35,7 @@ function startCountdown(duration) {
     const minutes = Math.floor(timer / 60);
     const seconds = timer % 60;
 
-    display.textContent =
-      minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    display.textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 
     if (--timer < 0) {
       clearInterval(countdownTimer);
@@ -68,6 +66,11 @@ function getLocationAndGenerateCode() {
       console.log("Teacher Location:", latitude, longitude);
 
       generateCode();
+
+      // Store code generation time
+      const codeTime = new Date().toISOString();
+      localStorage.setItem("codeGeneratedAt", codeTime);
+
       sendCodeToServer(generatedCode, parseFloat(latitude), parseFloat(longitude));
     },
     (error) => {
@@ -76,39 +79,19 @@ function getLocationAndGenerateCode() {
       console.error(error);
     }
   );
-} 
+}
 
-// function sendCodeToServer(code, latitude, longitude) {
-//   fetch("https://localhost:5000/api/generateCode/generate", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({ code, latitude, longitude }),
-//   })
-//     .then((res) => res.json())
-//     .then((data) => {
-//       console.log("✅ Code stored in MongoDB:", data);
-//     })
-
-//     .catch((err) => {
-//       console.error("❌ Failed to store code in MongoDB:", err);
-//     });
-// }
 async function sendCodeToServer(code, latitude, longitude) {
   try {
-      const res = await fetch("https://smart-attendance-face.onrender.com/api/generateCode/generate", { 
+    const res = await fetch("https://smart-attendance-face.onrender.com/api/generateCode/generate", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ code, latitude, longitude }),
     });
 
     const data = await res.json();
     console.log("✅ Code stored in MongoDB:", data);
 
-    // Show dashboard redirect button
     const goToDashboardBtn = document.getElementById("goToDashboardBtn");
     if (goToDashboardBtn) {
       goToDashboardBtn.style.display = "block";
@@ -116,7 +99,6 @@ async function sendCodeToServer(code, latitude, longitude) {
         window.location.href = "../dashboard.html";
       });
     }
-
   } catch (err) {
     console.error("❌ Failed to store code in MongoDB:", err);
   }

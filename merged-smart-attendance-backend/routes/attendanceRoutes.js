@@ -12,14 +12,14 @@ router.get("/live/:teacherId", async (req, res) => {
 
   try {
     const attendance = await Attendance.find({ status: "Present", code: { $exists: true } })
-      .populate("studentId", "collegeId name") // populate student details
+      .populate("studentId", "collegeId name")
       .sort({ createdAt: -1 });
 
-    // You can optionally filter by lectureCode.creator == teacherId if available
     const result = attendance.map(a => ({
       studentId: a.studentId.collegeId,
       name: a.studentId.name,
-      status: a.status
+      status: a.status,
+      timestamp: a.createdAt // ✅ include for filtering on frontend
     }));
 
     res.json({ success: true, attendance: result });
@@ -28,6 +28,7 @@ router.get("/live/:teacherId", async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }
 });
+
 
 // ✅ Mark a student absent manually
 router.post("/mark-absent", async (req, res) => {
