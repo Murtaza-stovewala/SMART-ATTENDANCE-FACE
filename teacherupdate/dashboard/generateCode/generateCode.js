@@ -12,19 +12,38 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   document.getElementById("teacher-name").textContent = teacherName || "Teacher";
+
+  // If code is still valid, resume countdown
+  const savedCode = localStorage.getItem("generatedCode");
+  const codeTimeRaw = localStorage.getItem("codeGeneratedAt");
+
+  if (savedCode && codeTimeRaw) {
+    const codeTime = new Date(codeTimeRaw);
+    const now = new Date();
+    const diffInSeconds = Math.floor((now - codeTime) / 1000);
+
+    if (diffInSeconds < 600) {
+      // Resume existing code
+      generatedCode = savedCode;
+      const remaining = 600 - diffInSeconds;
+      showCodeBox(generatedCode, remaining);
+      startCountdown(remaining);
+    } else {
+      // Expired, clear old data
+      clearStoredCode();
+    }
+  }
 });
 
-function generateCode() {
-  generatedCode = Math.floor(100000 + Math.random() * 900000);
+function showCodeBox(code, timeLeft) {
   const codeBox = document.getElementById("codeDisplay");
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
 
-  codeBox.innerHTML =
-    "<strong>Attendance Code:</strong> " +
-    generatedCode +
-    "<br><small>Valid for: <span id='timer'>10:00</span> minutes</small>";
-
-  clearInterval(countdownTimer);
-  startCountdown(600); // 10 minutes
+  codeBox.innerHTML = `
+    <strong>Attendance Code:</strong> ${code}<br>
+    <small>Valid for: <span id='timer'>${minutes}:${seconds.toString().padStart(2, "0")}</span> minutes</small>
+  `;
 }
 
 function startCountdown(duration) {
@@ -34,15 +53,30 @@ function startCountdown(duration) {
   countdownTimer = setInterval(() => {
     const minutes = Math.floor(timer / 60);
     const seconds = timer % 60;
-
-    display.textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    display.textContent = `${minutes}:${seconds.toString().padStart(2, "0")}`;
 
     if (--timer < 0) {
       clearInterval(countdownTimer);
-      document.getElementById("codeDisplay").innerHTML =
-        "<strong>Code expired</strong>";
+      document.getElementById("codeDisplay").innerHTML = "<strong>Code expired</strong>";
+      clearStoredCode();
     }
   }, 1000);
+}
+
+function clearStoredCode() {
+  localStorage.removeItem("generatedCode");
+  localStorage.removeItem("codeGeneratedAt");
+}
+
+function generateCode() {
+  generatedCode = Math.floor(100000 + Math.random() * 900000);
+  const codeTime = new Date().toISOString();
+
+  localStorage.setItem("generatedCode", generatedCode);
+  localStorage.setItem("codeGeneratedAt", codeTime);
+
+  showCodeBox(generatedCode, 600);
+  startCountdown(600);
 }
 
 function getLocationAndGenerateCode() {
@@ -60,18 +94,13 @@ function getLocationAndGenerateCode() {
       const latitude = position.coords.latitude.toFixed(5);
       const longitude = position.coords.longitude.toFixed(5);
 
-      locationBox.textContent =
-        "Location Acquired ✅ (Lat: " + latitude + ", Lng: " + longitude + ")";
+      locationBox.textContent = `Location Acquired ✅ (Lat: ${latitude}, Lng: ${longitude})`;
 
-      console.log("Teacher Location:", latitude, longitude);
-
-      generateCode();
-
-      // Store code generation time
-      const codeTime = new Date().toISOString();
-      localStorage.setItem("codeGeneratedAt", codeTime);
-
-      sendCodeToServer(generatedCode, parseFloat(latitude), parseFloat(longitude));
+      // Only generate if no active code
+      if (!localStorage.getItem("generatedCode")) {
+        generateCode();
+        sendCodeToServer(generatedCode, parseFloat(latitude), parseFloat(longitude));
+      }
     },
     (error) => {
       locationBox.textContent = "❌ Failed to fetch location.";
