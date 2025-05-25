@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".markAbsent").forEach(button => {
       button.addEventListener("click", e => {
         const row = e.target.closest("tr");
-        const studentId = row.children[0].textContent;
+        const studentId = row.children[0].textContent; 
 
         fetch("https://smart-attendance-face.onrender.com/attendance/mark-absent", {
           method: "POST",
@@ -120,3 +120,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+function logout() {
+localStorage.removeItem("teacherId");
+localStorage.removeItem("teacherName");
+localStorage.removeItem("teacherToken"); // if you're using token storage
+localStorage.removeItem("codeGeneratedAt"); // optional: clears session code
+window.location.href = "/teacherupdate/login/login.html";
+}
